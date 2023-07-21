@@ -1,0 +1,49 @@
+{{#if items}}
+<h2 class="text-center mt-3" style="display: none;">Cart is empty</h2>
+<section>
+    <div class="container">
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <td><img style="width: 70px;height: 70px;" src="/images/product-images/{{this.product._id}}.jpg" alt="">
+                    </td>
+                    <td>{{this.product.Name}}</td>
+                    <td>{{this.product.Category}}</td>
+                    <td>{{this.product.Price}}</td>
+                    <td>
+                        {{#if this.ys}}
+                        <span style="margin-right: 52.8px; display: none;" id="space"></span>
+                        <button class="btn btn-secondary mr-3" id="minus" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1,'{{this.product.Name}}','{{../user._id}}')">-</button>
+                        {{else}}
+                        <span style="margin-right: 52.8px;" id="space"></span>
+                        <button class="btn btn-secondary mr-3" id="minus" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1,'{{this.product.Name}}','{{../user._id}}')" style="display: none;">-</button>
+                        {{/if}}
+                        <span id={{this.product._id}}>{{this.quantity}}</span>
+                        <button class="btn btn-secondary ml-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1,'{{this.product.Name}}','{{../user._id}}')">+</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',0,'{{this.product.Name}}','{{../user._id}}')">Remove</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="float-right pr-5">
+            <h5 class="float-left mr-5">Total: RS. <span id="total">{{total}}</span></h5><br>
+            <a href="/place-order" class="btn btn-success mt-3" style="width: 100%;"><b>Place Order</b></a>
+        </div>
+</section>
+{{else}}
+<h2 class="text-center mt-3">Cart is empty</h2>
+{{/if}}
