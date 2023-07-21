@@ -17,6 +17,7 @@
     "http-errors": "~1.6.3",
     "mongodb": "^5.1.0",
     "morgan": "~1.9.1",
+    "path": "^0.12.7",
     "razorpay": "^2.8.6"
   }
 }
